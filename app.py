@@ -24,8 +24,18 @@ def feedback():
         conn.commit()
         cursor.close()
         conn.close()
-        return redirect('/success')
+        return redirect('/')
+    return render_template('feedback.html')
     
+@app.route('/admin')
+def admin():
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM feedback order by submmited_at desc")
+    feedbacks = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('admin.html',feedbacks=feedbacks)
 
 if __name__ == '__main__':
     app.run(debug=True)
