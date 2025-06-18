@@ -7,5 +7,5 @@ create table if not exists feedback(
     student_name varchar(100),
     email varchar(100),
     comments text,
-    submmited_at timestamp default current_timestamp
+    submitted_at timestamp default current_timestamp
 );
